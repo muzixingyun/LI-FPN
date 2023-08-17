@@ -61,6 +61,7 @@ def test_class(data_set, batch_size=1, net=None, is_use_gpu=True, model_id=None,
         X = X.to(device)
         Y = Y.to(device)
         out1, out2, out3 = net(X)
+        out1 = torch.softmax(out1, dim=1)
         max_index = torch.max(out1, dim=1)[1]
         label_total.append(Y.cpu().detach().numpy())
         predict_total.append(max_index.cpu().detach().numpy())
